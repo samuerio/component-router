@@ -11,7 +11,6 @@
 
 **1.在struct.xml配置路由**
 
-
 ```xml
 <action name="app"
 	class="com.issun.component.router.AppCommonAction">
@@ -21,9 +20,53 @@
 </action>	
 ```
 
-**2.想通过路由管理的Action实现IAction接口**
+**2.在WEB-INF/config/action路径下面提供action映射的配置文件verbs.properties**
+
+eg.
+
+```properties
+formDesignAction =com.issun.formdesigner.action.FormDesignAction
+```
+
+**3.想通过路由管理的Action实现IAction接口,并在verbs.properties配置映射参数**
+
+eg.
+
+```java
+package com.issun.formdesigner.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.issun.component.router.IAction;
+import com.issun.component.router.bean.ActionInfo;
+import com.issun.component.router.bean.ActionResult;
+
+public class FormDesignAction implements IAction {
+
+	@Override
+	public ActionResult execute(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		ActionResult ar = new ActionResult();
+		
+		//......
+		
+		return ar;
+	}
+
+}
+```
+
+
+```properties
+formDesignAction =com.issun.formdesigner.action.FormDesignAction
+```
+
+那么以后带有`app.action?type=formDesignAction`的请求都会路由到FormDesignAction。
 
 
 
-**3.在WEB-INF/config/action路径下面提供action映射的配置文件verbs.properties**
 
