@@ -1,6 +1,6 @@
 # Router-Conponent
 
-基于Struct封装，简单、好用的路由组件
+基于struts封装，简单、好用的路由组件
 
 # Features
 
