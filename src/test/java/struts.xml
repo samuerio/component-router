@@ -1,0 +1,40 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.custom.i18n.resources" value="message"></constant>
+	<constant name="struts.multipart.maxSize" value="209715200000"></constant>
+	<package name="struts2" extends="struts-default">
+
+		<!-- 全局跳转 -->
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+			<result name="error" type="redirect">/error.jsp</result>
+		</global-results>
+		<!-- 全局异常 -->
+
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="">
+			</exception-mapping>
+		</global-exception-mappings>
+
+		<action name="app" class="com.issun.component.router.AppCommonAction">
+			<interceptor-ref name="defaultStack" />
+			<!-- Structs Dynamic Results -->
+			<result name="forward">${#request.forward}</result>
+			<result name="success">/success.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+
+		<!-- 带文件流请求处理 -->
+		<!-- 
+		<action name="uploadExcel" class="com.samuerio.UploadExcelAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maxinumSize">209715200000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action> -->
+
+	</package>
+</struts>

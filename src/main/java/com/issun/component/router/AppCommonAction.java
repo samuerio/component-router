@@ -50,24 +50,24 @@ public class AppCommonAction extends ActionSupport
 	private HttpServletResponse response;
 	
 	
+	
 	//------------------------------------------------------- Public Methods
 
-	@Override
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
 	}
 
-	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}
+	
 	
 	@Override
 	public String execute() throws Exception {
 		
 		boolean isSuccess = false;
 		String message = "";
-		String result = "";
+		String result = null;
 		
 		
 		String type = this.request.getParameter("type");
@@ -93,7 +93,7 @@ public class AppCommonAction extends ActionSupport
 						if(!af.isUrl()){
 							result = af.getResult();
 						}else{
-							//TODO struts如何实现跳转
+							//Structs Dynamic Results
 							result = DEFAULT_FORWARD;
 							request.setAttribute(DEFAULT_FORWARD, af.getResult());
 						}
